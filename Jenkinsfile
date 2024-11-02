@@ -9,13 +9,15 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        GITHUB_TOKEN          = credentials('github-token')
         AWS_DEFAULT_REGION    = 'us-east-1'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/ajaysingh3200/terraform-jenkins-pipeline.git'
+                // Use the GitHub token in the Git URL for authentication 
+                git branch: 'main', url: '//github.com/ajaysingh3200/terraform-jenkins-pipeline.git', credentialsId: 'github-token''
             }
         }
         stage('Terraform init') {
