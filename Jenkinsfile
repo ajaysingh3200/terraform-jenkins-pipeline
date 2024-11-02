@@ -17,7 +17,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Use the GitHub token in the Git URL for authentication 
-                git branch: 'main', url: '//github.com/ajaysingh3200/terraform-jenkins-pipeline.git', credentialsId: 'github-token'
+                git branch: 'main', url: 'https://github.com/ajaysingh3200/terraform-jenkins-pipeline.git', credentialsId: 'github-token'
             }
         }
         stage('Terraform init') {
