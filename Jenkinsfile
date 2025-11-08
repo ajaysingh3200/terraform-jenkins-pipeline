@@ -7,8 +7,8 @@ pipeline {
     }
 
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('aws-credentials').username
-        AWS_SECRET_ACCESS_KEY = credentials('aws-credentials').password
+        AWS_ACCESS_KEY_ID     = "${credentials('aws-credentials').username}"
+        AWS_SECRET_ACCESS_KEY = "${credentials('aws-credentials').password}"
         GITHUB_TOKEN          = credentials('github-token')
         AWS_DEFAULT_REGION    = 'us-east-1'
     }
@@ -22,19 +22,16 @@ pipeline {
         }
         stage('Terraform init') {
             steps {
-                
                 sh 'terraform init'
             }
         }
         stage('Terraform fmt') {
             steps {
-                
                 sh 'terraform fmt'
             }
         }
         stage('Terraform validate') {
             steps {
-                
                 sh 'terraform validate'
             }
         }
@@ -53,16 +50,14 @@ pipeline {
                             input message: "Do you want to apply the plan?",
                             parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                         }
-
-                        sh 'terraform ${action} -input=false tfplan'
+                        sh 'terraform apply -input=false tfplan'
                     } else if (params.action == 'destroy') {
-                        sh 'terraform ${action} --auto-approve'
+                        sh 'terraform destroy -auto-approve'
                     } else {
                         error "Invalid action selected. Please choose either 'apply' or 'destroy'."
                     }
                 }
             }
         }
-
     }
 }
