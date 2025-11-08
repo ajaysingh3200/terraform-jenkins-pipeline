@@ -2,7 +2,7 @@ pipeline {
     agent { label "vinod" }
 
     triggers {
-        githubpush()
+        gitpush()
     }
 
     parameters {
