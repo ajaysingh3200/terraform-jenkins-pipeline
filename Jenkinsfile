@@ -7,8 +7,8 @@ pipeline {
     }
 
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('aws-credentials')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-credentials')
+        AWS_ACCESS_KEY_ID     = credentials('aws-credentials').username
+        AWS_SECRET_ACCESS_KEY = credentials('aws-credentials').password
         GITHUB_TOKEN          = credentials('github-token')
         AWS_DEFAULT_REGION    = 'us-east-1'
     }
