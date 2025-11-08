@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label "vinod" }
 
     parameters {
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
