@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'multi-environment', url: 'https://github.com/ajaysingh3200/terraform-jenkins-pipeline.git', credentialsId: 'github-token'
+                git branch: 'main', url: 'https://github.com/ajaysingh3200/terraform-jenkins-pipeline.git', credentialsId: 'github-token'
             }
         }
         
