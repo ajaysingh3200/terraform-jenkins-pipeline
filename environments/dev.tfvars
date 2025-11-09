@@ -1,0 +1,9 @@
+environment = "dev"
+vpc_cidr = "10.1.0.0/16"
+public_subnet_1_cidr = "10.1.1.0/24"
+public_subnet_2_cidr = "10.1.2.0/24"
+public_subnet_3_cidr = "10.1.3.0/24"
+instance_type = "t3.micro"
+ami = "ami-0c02fb55956c7d316"
+name_tag = "dev-instance"
+enable_monitoring = false

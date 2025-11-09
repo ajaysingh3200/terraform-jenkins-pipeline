@@ -8,6 +8,11 @@ output "instance_id" {
  description = "Instance ID"
 }
 
+output "vpc_id" {
+  value       = aws_vpc.main.id
+  description = "ID of the VPC"
+}
+
 output "public_subnet_1_id" {
   value       = aws_subnet.public-subnet-1.id
   description = "ID of public subnet 1"
@@ -30,4 +35,10 @@ output "public_subnet_cidrs" {
     aws_subnet.public-subnet-3.cidr_block
   ]
   description = "CIDR blocks of all public subnets"
+}
+
+# Add Internet Gateway output
+output "internet_gateway_id" {
+  value       = aws_internet_gateway.main.id
+  description = "ID of the Internet Gateway"
 }

@@ -1,0 +1,9 @@
+environment = "staging"
+vpc_cidr = "10.2.0.0/16"
+public_subnet_1_cidr = "10.2.1.0/24"
+public_subnet_2_cidr = "10.2.2.0/24"
+public_subnet_3_cidr = "10.2.3.0/24"
+instance_type = "t3.medium"
+ami = "ami-0c02fb55956c7d316"
+name_tag = "staging-instance"
+enable_monitoring = true
