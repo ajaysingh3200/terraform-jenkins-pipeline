@@ -61,3 +61,8 @@ variable "public_subnet_3_cidr" {
   type        = string
 }
 
+variable "enable_monitoring" {
+  description = "Enable detailed monitoring for EC2 instances"
+  type        = bool
+  default     = false
+}
