@@ -34,3 +34,30 @@ variable "name_tag" {
    description = "Name of the EC2 instance"
    default     = "My EC2 Instance"
 }
+
+
+variable "environment" {
+  description = "Environment name (dev, staging, production)"
+  type        = string
+}
+
+variable "vpc_cidr" {
+  description = "CIDR block for VPC"
+  type        = string
+}
+
+variable "public_subnet_1_cidr" {
+  description = "CIDR block for public subnet 1"
+  type        = string
+}
+
+variable "public_subnet_2_cidr" {
+  description = "CIDR block for public subnet 2"
+  type        = string
+}
+
+variable "public_subnet_3_cidr" {
+  description = "CIDR block for public subnet 3"
+  type        = string
+}
+
