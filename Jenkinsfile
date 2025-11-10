@@ -92,18 +92,18 @@ pipeline {
                         if (params.action == 'apply') {
                             sh "terraform apply -var-file=environments/${params.ENVIRONMENT}.tfvars -auto-approve"
                             
-                            // Display outputs
-                            sh "terraform output -json > outputs-${params.ENVIRONMENT}.json"
-                            def outputs = readJSON file: "outputs-${params.ENVIRONMENT}.json"
-                            echo "Internet Gateway ID: ${outputs.internet_gateway_id.value}"
+                            // Display outputs - FIXED: Using terraform output commands instead of readJSON
                             echo "=== ${params.ENVIRONMENT.toUpperCase()} Environment Deployment Complete ==="
-                            echo "VPC ID: ${outputs.vpc_id.value}"
-                            echo "Subnet 1: ${outputs.public_subnet_1_id.value}"
-                            echo "Subnet 2: ${outputs.public_subnet_2_id.value}"
-                            echo "Subnet 3: ${outputs.public_subnet_3_id.value}"
-                            echo "EC2 Instance: ${outputs.instance_id.value}"
-                            echo "Public IP: ${outputs.public_ip.value}"
-                            echo"Subnet CIDRs: ${outputs.public_subnet_cidrs.value}"
+                            sh """
+                                echo "VPC ID: \$(terraform output -raw vpc_id)"
+                                echo "Internet Gateway ID: \$(terraform output -raw internet_gateway_id)"
+                                echo "Subnet 1: \$(terraform output -raw public_subnet_1_id)"
+                                echo "Subnet 2: \$(terraform output -raw public_subnet_2_id)"
+                                echo "Subnet 3: \$(terraform output -raw public_subnet_3_id)"
+                                echo "EC2 Instance: \$(terraform output -raw instance_id)"
+                                echo "Public IP: \$(terraform output -raw public_ip)"
+                                echo "Subnet CIDRs: \$(terraform output public_subnet_cidrs)"
+                            """
                             
                         } else if (params.action == 'destroy') {
                             sh "terraform destroy -var-file=environments/${params.ENVIRONMENT}.tfvars -auto-approve"
